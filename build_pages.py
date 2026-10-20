@@ -2,7 +2,7 @@
 import os
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
-TOTAL_PAGES = 24
+TOTAL_PAGES = 25
 
 TITLES = {
     1: "Couverture",
@@ -28,7 +28,8 @@ TITLES = {
     21: "Internet et eSIM",
     22: "Que mettre dans son sac",
     23: "Kit de survie en khmer",
-    24: "Merci et a tres bientot",
+    24: "Mon centre de reservation",
+    25: "Merci et a tres bientot",
 }
 
 TEMPLATE = """<!DOCTYPE html>
@@ -149,7 +150,7 @@ TEMPLATE = """<!DOCTYPE html>
 </div>
 {extra}
 <script src="gate.js"></script>
-<script src="pwa.js" data-name="Mini-guide Cambodge" data-slug="cambodge"{banner}></script>
+<script src="pwa.js" data-nav="pages" data-booking="kh" data-booking-page="24" data-toc="1|Couverture;2|Bienvenue au Cambodge;3|Carte du Cambodge;4|Visa et formalités;5|Comment aller au Cambodge;6|Depuis La Réunion;7|Se déplacer au Cambodge;8|Phnom Penh;9|Siem Reap et Angkor;10|Sihanoukville et les îles du sud;11|Kep et Kampot;12|Battambang;13|Kampong Thom;14|Ratanakiri et Mondulkiri;15|Koh Ker et Preah Vihear;16|Gastronomie et culture;17|Informations pratiques;18|Itinéraires conseillés;19|Bien-être et expériences insolites;20|Hébergements au Cambodge;21|Internet et eSIM;22|Que mettre dans son sac;23|Kit de survie en khmer;24|Mon centre de réservation;25|Merci et à très bientôt" data-weather="Phnom Penh:11.56,104.92;Siem Reap:13.36,103.86;Sihanoukville:10.63,103.50;Kampot:10.61,104.18;Battambang:13.10,103.20" data-first="1" data-total="25" data-name="Mini-guide Cambodge" data-slug="cambodge"{banner}></script>
 </body>
 </html>
 """
@@ -272,6 +273,35 @@ def nav_html(n):
     return "\n".join(parts)
 
 PAGE_EXTRA = {
+    3: """  <!-- carte-zones -->
+  <style>.pin{border-radius:10px;-webkit-tap-highlight-color:rgba(255,200,80,.45)}.pin:active{background:rgba(255,200,80,.35);box-shadow:0 0 0 2px rgba(255,200,80,.9)}</style>
+  <a href="page9.html" class="hotspot pin" style="left:35.87%;top:36.04%;width:14.20%;height:3.32%;" aria-label="Siem Reap"></a>
+  <a href="page9.html" class="hotspot pin" style="left:44.66%;top:30.37%;width:6.59%;height:3.32%;" aria-label="Angkor"></a>
+  <a href="page9.html" class="hotspot pin" style="left:24.45%;top:29.59%;width:12.15%;height:3.32%;" aria-label="Banteay Chhmar"></a>
+  <a href="page15.html" class="hotspot pin" style="left:55.34%;top:26.37%;width:10.10%;height:3.32%;" aria-label="Preah Vihear"></a>
+  <a href="page15.html" class="hotspot pin" style="left:58.86%;top:32.52%;width:6.59%;height:3.32%;" aria-label="Koh Ker"></a>
+  <a href="page12.html" class="hotspot pin" style="left:16.84%;top:39.55%;width:13.18%;height:3.32%;" aria-label="Battambang"></a>
+  <a href="page12.html" class="hotspot pin" style="left:18.74%;top:33.79%;width:8.78%;height:3.32%;" aria-label="Sisophon"></a>
+  <a href="page12.html" class="hotspot pin" style="left:5.56%;top:32.62%;width:8.64%;height:3.32%;" aria-label="Poipet"></a>
+  <a href="page12.html" class="hotspot pin" style="left:26.79%;top:47.56%;width:6.59%;height:3.32%;" aria-label="Pursat"></a>
+  <a href="page13.html" class="hotspot pin" style="left:53.88%;top:44.43%;width:12.30%;height:3.32%;" aria-label="Kampong Thom"></a>
+  <a href="page8.html" class="hotspot pin" style="left:45.68%;top:56.93%;width:16.54%;height:3.32%;" aria-label="Phnom Penh"></a>
+  <a href="page8.html" class="hotspot pin" style="left:58.57%;top:63.48%;width:6.59%;height:3.32%;" aria-label="Takeo"></a>
+  <a href="page8.html" class="hotspot pin" style="left:68.08%;top:58.30%;width:8.35%;height:3.32%;" aria-label="Prey Veng"></a>
+  <a href="page8.html" class="hotspot pin" style="left:73.65%;top:61.33%;width:10.10%;height:3.32%;" aria-label="Svay Rieng"></a>
+  <a href="page11.html" class="hotspot pin" style="left:48.32%;top:62.89%;width:6.15%;height:3.32%;" aria-label="Bokor"></a>
+  <a href="page11.html" class="hotspot pin" style="left:44.22%;top:66.99%;width:7.91%;height:3.32%;" aria-label="Kampot"></a>
+  <a href="page11.html" class="hotspot pin" style="left:56.08%;top:67.97%;width:5.42%;height:3.32%;" aria-label="Kep"></a>
+  <a href="page10.html" class="hotspot pin" style="left:20.94%;top:59.47%;width:15.67%;height:3.32%;" aria-label="Sihanoukville"></a>
+  <a href="page10.html" class="hotspot pin" style="left:4.83%;top:60.84%;width:9.08%;height:3.32%;" aria-label="Koh Rong"></a>
+  <a href="page10.html" class="hotspot pin" style="left:9.96%;top:68.36%;width:16.40%;height:3.32%;" aria-label="Koh Rong Samloem"></a>
+  <a href="page10.html" class="hotspot pin" style="left:13.91%;top:50.00%;width:8.35%;height:3.32%;" aria-label="Koh Kong"></a>
+  <a href="page14.html" class="hotspot pin" style="left:84.92%;top:35.55%;width:10.54%;height:3.32%;" aria-label="Ratanakiri"></a>
+  <a href="page14.html" class="hotspot pin" style="left:87.55%;top:48.05%;width:5.86%;height:3.32%;" aria-label="Mondulkiri"></a>
+  <a href="page14.html" class="hotspot pin" style="left:68.23%;top:36.13%;width:8.64%;height:3.32%;" aria-label="Stung Treng"></a>
+  <a href="page14.html" class="hotspot pin" style="left:72.04%;top:45.90%;width:6.73%;height:3.32%;" aria-label="Kratie"></a>
+  <!-- /carte-zones -->
+""",
     1: """  <!-- cover-zones -->
   <a href="page9.html" class="hotspot btn-cover" style="left:2.44%;top:71.94%;width:23.44%;height:18.88%;" aria-label="Temples majestueux"></a>
   <a href="page10.html" class="hotspot btn-cover" style="left:26.86%;top:71.94%;width:22.75%;height:18.88%;" aria-label="Plages paradisiaques"></a>
@@ -282,7 +312,17 @@ PAGE_EXTRA = {
     21: """  <a href="https://airalo.pxf.io/PzWeQQ" target="_blank" rel="noopener" class="hotspot btn-affiliate" style="left:2%;top:55.5%;width:46%;height:3.4%;"></a>
   <a href="https://holafly.sjv.io/OYdRjN" target="_blank" rel="noopener" class="hotspot btn-affiliate" style="left:52%;top:55.5%;width:46%;height:3.4%;"></a>
 """,
-    24: """  <a href="https://pascalb2211-crypto.github.io/thai-malin-mini-guide-anime/" target="_blank" rel="noopener" class="hotspot btn-affiliate" style="left:2.3%;top:28%;width:22.9%;height:27.7%;"></a>
+    24: """  <a href="https://fr.trip.com/?Allianceid=9852508&amp;SID=327644129&amp;trip_sub3=D19106369&amp;locale=fr-fr" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:2.93%;top:45.44%;width:45.31%;height:3.71%;" aria-label="Trip.com"></a>
+  <a href="https://www.dpbolvw.net/click-101855269-12677526?url=https%3A%2F%2Fwww.booking.com%2Fcountry%2Fkh.fr.html" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:52.05%;top:45.44%;width:23.44%;height:3.71%;" aria-label="Booking.com"></a>
+  <a href="https://www.agoda.com/partners/partnersearch.aspx?pcs=1&amp;cid=1972177" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:77.05%;top:45.44%;width:20.51%;height:3.71%;" aria-label="Agoda"></a>
+  <a href="https://www.getyourguide.fr/" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:2.93%;top:64.97%;width:22.36%;height:3.52%;" aria-label="GetYourGuide"></a>
+  <a href="https://www.klook.com/fr/?aid=129660" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:26.66%;top:64.97%;width:21.88%;height:3.52%;" aria-label="Klook"></a>
+  <a href="https://12go.asia/?z=16569415" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:52.05%;top:64.97%;width:45.41%;height:3.52%;" aria-label="12Go"></a>
+  <a href="https://airalo.pxf.io/PzWeQQ" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:2.93%;top:82.49%;width:23.54%;height:3.58%;" aria-label="Airalo"></a>
+  <a href="https://holafly.sjv.io/OYdRjN" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:27.83%;top:82.49%;width:20.61%;height:3.58%;" aria-label="Holafly"></a>
+  <a href="https://safetywing.com/nomad-insurance?referenceID=26576610&amp;campaign=thai-malin&amp;utm_campaign=thai-malin&amp;utm_source=26576610&amp;utm_medium=Ambassador" target="_blank" rel="noopener sponsored" class="hotspot btn-affiliate" style="left:52.05%;top:82.49%;width:26.37%;height:3.58%;" aria-label="SafetyWing"></a>
+""",
+    25: """  <a href="https://pascalb2211-crypto.github.io/thai-malin-mini-guide-anime/" target="_blank" rel="noopener" class="hotspot btn-affiliate" style="left:2.3%;top:28%;width:22.9%;height:27.7%;"></a>
   <a href="https://pascalb2211-crypto.github.io/thai-malin-mini-guide-vietnam/" target="_blank" rel="noopener" class="hotspot btn-affiliate" style="left:26.3%;top:28%;width:22.9%;height:27.7%;"></a>
   <a href="https://pascalb2211-crypto.github.io/thai-malin-mini-guide-laos/" target="_blank" rel="noopener" class="hotspot btn-affiliate" style="left:50.2%;top:28%;width:22.9%;height:27.7%;"></a>
   <a href="https://www.facebook.com/share/1aPCoUNWbm/?mibextid=wwXIfr" target="_blank" rel="noopener" class="hotspot btn-affiliate" style="left:13.8%;top:62%;width:11.4%;height:7%;"></a>
