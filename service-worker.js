@@ -12,6 +12,7 @@ const CORE = [
   "index.html",
   "gate.js",
   "pwa.js",
+  "zones.json",
   "manifest.json",
   "page1.html",
   "page2.html",
